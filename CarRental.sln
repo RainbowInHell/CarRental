@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car_Rental", "Car_Rental\Car_Rental.csproj", "{16988218-9847-4C5C-8835-6597FD0363FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental", "Car_Rental\CarRental.csproj", "{16988218-9847-4C5C-8835-6597FD0363FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car_Rental.BLL", "Car_Rental.BLL\Car_Rental.BLL.csproj", "{47C9083E-0053-409B-BB3C-9BCECBDD8839}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.BLL", "Car_Rental.BLL\CarRental.BLL.csproj", "{47C9083E-0053-409B-BB3C-9BCECBDD8839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car_Rental.DLL", "Car_Rental.DLL\Car_Rental.DLL.csproj", "{A089AB3D-44FE-414E-858A-07781EB76A65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.DLL", "Car_Rental.DLL\CarRental.DLL.csproj", "{A089AB3D-44FE-414E-858A-07781EB76A65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
