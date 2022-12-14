@@ -1,7 +1,6 @@
 ﻿using Car_Rental.DLL.Entities;
 using CarRental.DLL.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace CarRental.DLL
 {
@@ -28,19 +27,6 @@ namespace CarRental.DLL
             new VehicleEntityConfiguration().Configure(modelBuilder.Entity<Vehicle>());
             new CustomerEntityConfiguration().Configure(modelBuilder.Entity<Customer>());
             new BookingEntityConfiguration().Configure(modelBuilder.Entity<Booking>());
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder()
-                                    .SetBasePath(Directory.GetCurrentDirectory())
-                                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            
-            IConfiguration configuration = builder.Build();
-            
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            optionsBuilder.UseNpgsql(connectionString);
         }
     }
 }
