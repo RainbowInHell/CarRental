@@ -22,11 +22,7 @@ namespace CarRental.DLL
         {
             base.OnModelCreating(modelBuilder);
 
-            new ManufacturerEntityConfiguration().Configure(modelBuilder.Entity<Manufacturer>());
-            new VehicleModelEntityConfiguration().Configure(modelBuilder.Entity<VehicleModel>());
-            new VehicleEntityConfiguration().Configure(modelBuilder.Entity<Vehicle>());
-            new CustomerEntityConfiguration().Configure(modelBuilder.Entity<Customer>());
-            new BookingEntityConfiguration().Configure(modelBuilder.Entity<Booking>());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
         }
     }
 }
