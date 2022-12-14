@@ -8,10 +8,18 @@ namespace CarRental.DLL.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Manufacturer> manufacturerEntityBuilder)
         {
-            manufacturerEntityBuilder.HasKey(e => e.ManufacturerID);
-            manufacturerEntityBuilder.Property(e => e.Name).HasColumnType("varchar").HasMaxLength(25).IsRequired();
+            manufacturerEntityBuilder
+                .HasKey(e => e.ManufacturerID);
 
-            manufacturerEntityBuilder.HasMany(e => e.VehicleModels).WithOne(e => e.Manufacturer);
+            manufacturerEntityBuilder
+                .Property(e => e.Name)
+                .HasColumnType("varchar")
+                .HasMaxLength(25)
+                .IsRequired();
+
+            manufacturerEntityBuilder
+                .HasMany(e => e.VehicleModels)
+                .WithOne(e => e.Manufacturer);
         }
     }
 }
