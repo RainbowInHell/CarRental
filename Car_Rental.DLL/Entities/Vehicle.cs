@@ -4,6 +4,10 @@
     {
         public int VehicleID { get; set; }
         public bool IsRented { get; set; }
-        public int ModelID { get; set; }
+
+        public int VehicleModelID { get; set; }
+        public VehicleModel VehicleModel { get; set; }
+
+        public Booking Booking { get; set; }
     }
 }

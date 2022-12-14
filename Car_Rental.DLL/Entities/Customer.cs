@@ -11,5 +11,6 @@
         public string Adres { get; set; }
         public int DrivingLicenseNumber { get; set; }
 
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

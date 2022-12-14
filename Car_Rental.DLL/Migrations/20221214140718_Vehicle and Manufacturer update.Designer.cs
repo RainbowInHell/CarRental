@@ -3,6 +3,7 @@ using System;
 using CarRental.DLL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CarRental.DLL.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20221214140718_Vehicle and Manufacturer update")]
+    partial class VehicleandManufacturerupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +33,9 @@ namespace CarRental.DLL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BookingID"));
 
+                    b.Property<int>("BookingStatus")
+                        .HasColumnType("integer");
+
                     b.Property<int>("CustomerID")
                         .HasColumnType("integer");
 
@@ -39,15 +45,10 @@ namespace CarRental.DLL.Migrations
                     b.Property<DateOnly>("PickUpDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
                     b.Property<int>("VehicleID")
                         .HasColumnType("integer");
 
                     b.HasKey("BookingID");
-
-                    b.HasIndex("CustomerID");
 
                     b.ToTable("Bookings");
                 });
@@ -62,38 +63,30 @@ namespace CarRental.DLL.Migrations
 
                     b.Property<string>("Adres")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactNumber")
                         .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
-                    b.Property<string>("DrivingLicenseNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar");
+                    b.Property<int>("DrivingLicenseNumber")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
                     b.Property<string>("PassportNumber")
                         .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("text");
 
                     b.HasKey("CustomerID");
 
@@ -121,12 +114,18 @@ namespace CarRental.DLL.Migrations
             modelBuilder.Entity("Car_Rental.DLL.Entities.Vehicle", b =>
                 {
                     b.Property<int>("VehicleID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("VehicleID"));
 
                     b.Property<bool>("IsRented")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("VehicleModelID")
+                    b.Property<int>("ModelID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("VehicleModelID")
                         .HasColumnType("integer");
 
                     b.HasKey("VehicleID");
@@ -165,34 +164,11 @@ namespace CarRental.DLL.Migrations
                     b.ToTable("VehicleModels");
                 });
 
-            modelBuilder.Entity("Car_Rental.DLL.Entities.Booking", b =>
-                {
-                    b.HasOne("Car_Rental.DLL.Entities.Customer", "Customer")
-                        .WithMany("Bookings")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Car_Rental.DLL.Entities.Vehicle", b =>
                 {
-                    b.HasOne("Car_Rental.DLL.Entities.Booking", "Booking")
-                        .WithOne("Vehicle")
-                        .HasForeignKey("Car_Rental.DLL.Entities.Vehicle", "VehicleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Car_Rental.DLL.Entities.VehicleModel", "VehicleModel")
+                    b.HasOne("Car_Rental.DLL.Entities.VehicleModel", null)
                         .WithMany("Vehicles")
-                        .HasForeignKey("VehicleModelID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-
-                    b.Navigation("VehicleModel");
+                        .HasForeignKey("VehicleModelID");
                 });
 
             modelBuilder.Entity("Car_Rental.DLL.Entities.VehicleModel", b =>
@@ -204,17 +180,6 @@ namespace CarRental.DLL.Migrations
                         .IsRequired();
 
                     b.Navigation("Manufacturer");
-                });
-
-            modelBuilder.Entity("Car_Rental.DLL.Entities.Booking", b =>
-                {
-                    b.Navigation("Vehicle")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Car_Rental.DLL.Entities.Customer", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("Car_Rental.DLL.Entities.Manufacturer", b =>
