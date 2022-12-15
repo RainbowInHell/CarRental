@@ -3,40 +3,54 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
 {
+    //TODO: Make update after adding the BaseEntiy asbtract class, which will have Id property.
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly CarRentalContext context = null;
+        private readonly DbSet<T> dbSet = null;
 
         public GenericRepository()
         {
-            this.context = new CarRentalContext();
+            context = new CarRentalContext();
+            dbSet = context.Set<T>();
+        }
+
+        public GenericRepository(CarRentalContext context)
+        {
+            this.context = context;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await context.Set<T>().ToListAsync();
+            return await dbSet.AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await context.Set<T>().FindAsync(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task<int> InsertAsync(T entity)
         {
-            await context.Set<T>().AddAsync(entity);
-            await context.SaveChangesAsync();
+            await dbSet.AddAsync(entity);
+
+            //Will be erased after update
+            var Id = entity.GetType().GetProperty("ID").GetValue(entity, null);
+            return (int)Id;
         }
 
-        public async Task UpdateAsync(T entity)
+        public void Update(T entity)
         {
-            context.Set<T>().Update(entity);
-            await context.SaveChangesAsync();
+            dbSet.Update(entity);
         }
 
-        public async Task DeleteAsync(T entity)
+        public void Delete(T entity)
         {
-            context.Set<T>().Remove(entity);
+            dbSet.Remove(entity);
+        }
+
+        public async Task SaveAsync()
+        {
             await context.SaveChangesAsync();
         }
     }
