@@ -6,6 +6,9 @@ namespace CarRental.DLL.Repository
 {
     public class ManufacturerRepository : GenericRepository<Manufacturer>, IManufacturerRepository
     {
+        public ManufacturerRepository(CarRentalContext context) : base(context)
+        { }
+
         //TODO IManufacturerRepository methods implementation
     }
 }

@@ -1,8 +1,11 @@
-﻿namespace Car_Rental.DLL.Entities
+﻿using CarRental.DLL.Entities;
+
+namespace Car_Rental.DLL.Entities
 {
-    public class VehicleModel
+    public class VehicleModel : BaseEntity
     {
-        public int VehicleModelID { get; set; }
+        //public int VehicleModelID { get; set; }
+        public new int Id { get; set; }
         public string Name { get; set; }
         public int Mileage { get; set; }
         public int CreatedYear { get; set; }

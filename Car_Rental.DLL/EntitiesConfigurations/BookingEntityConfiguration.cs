@@ -9,7 +9,7 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Booking> bookingEntitybuilder)
         {
             bookingEntitybuilder
-                .HasKey(e => e.BookingID);
+                .HasKey(e => e.Id);
 
             bookingEntitybuilder
                 .Property(e => e.PickUpDate);
@@ -29,7 +29,7 @@ namespace CarRental.DLL.EntitiesConfigurations
             bookingEntitybuilder
                 .HasOne(a => a.Vehicle)
                 .WithOne(b => b.Booking)
-                .HasForeignKey<Vehicle>(b => b.VehicleID);
+                .HasForeignKey<Vehicle>(b => b.Id);
         }
     }
 }

@@ -1,19 +1,12 @@
-﻿using CarRental.DLL.Interfaces;
+﻿using CarRental.DLL.Entities;
+using CarRental.DLL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
 {
-    //TODO: Make update after adding the BaseEntiy asbtract class, which will have Id property.
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly CarRentalContext context = null;
-        private readonly DbSet<T> dbSet = null;
-
-        public GenericRepository()
-        {
-            context = new CarRentalContext();
-            dbSet = context.Set<T>();
-        }
 
         public GenericRepository(CarRentalContext context)
         {
@@ -22,31 +15,41 @@ namespace CarRental.DLL.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await dbSet.AsNoTracking().ToListAsync();
+            return await context.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await dbSet.FindAsync(id);
+            return await context.Set<T>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<int> InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
-            await dbSet.AddAsync(entity);
+            if (entity == null)
+                return;
 
-            //Will be erased after update
-            var Id = entity.GetType().GetProperty("ID").GetValue(entity, null);
-            return (int)Id;
+            await context.Set<T>().AddAsync(entity);
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            dbSet.Update(entity);
+            if (entity == null)
+                return;
+
+            T existing = await context.Set<T>().FindAsync(entity.Id);
+
+            if (existing != null)
+            {
+                context.Entry(existing).CurrentValues.SetValues(entity);
+            }
         }
 
         public void Delete(T entity)
         {
-            dbSet.Remove(entity);
+            if (entity == null)
+                return;
+
+            context.Set<T>().Remove(entity);
         }
 
         public async Task SaveAsync()
