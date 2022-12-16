@@ -6,7 +6,6 @@ namespace Car_Rental.DLL.Entities
 
     public class Booking : BaseEntity
     {
-        //public int BookingID { get; set; }
         public new int Id { get; set; }
         public DateOnly PickUpDate { get; set; }
         public DateOnly PickOffDate { get; set; }

@@ -4,7 +4,6 @@ namespace Car_Rental.DLL.Entities
 {
     public class Vehicle : BaseEntity
     {
-        //public int VehicleID { get; set; }
         public new int Id { get; set; }
         public bool IsRented { get; set; }
 
