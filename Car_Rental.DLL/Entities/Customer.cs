@@ -4,7 +4,7 @@ namespace Car_Rental.DLL.Entities
 {
     public class Customer : BaseEntity
     {
-        public new int Id { get; set; }
+        public override int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
