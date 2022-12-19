@@ -1,6 +1,7 @@
 ﻿using Car_Rental.DLL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace CarRental.DLL.EntitiesConfigurations
 {
     public class VehicleModelEntityConfiguration : IEntityTypeConfiguration<VehicleModel>

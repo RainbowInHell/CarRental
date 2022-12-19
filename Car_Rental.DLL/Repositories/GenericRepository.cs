@@ -6,7 +6,7 @@ namespace CarRental.DLL.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly CarRentalContext context = null;
+        protected readonly CarRentalContext context = null;
 
         public GenericRepository(CarRentalContext context)
         {

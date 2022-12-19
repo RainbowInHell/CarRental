@@ -4,6 +4,6 @@ namespace CarRental.DLL.Interfaces
 {
     public interface IManufacturerRepository : IGenericRepository<Manufacturer>
     {
-        Manufacturer GetManufacturerByName(string manufacturerName);
+        IEnumerable<Manufacturer> GetManufacturersWithModels();
     }
 }

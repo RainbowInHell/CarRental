@@ -4,6 +4,6 @@ namespace CarRental.DLL.Interfaces
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        IEnumerable<Customer> GetCustomersByName(string customerName);
+        IEnumerable<Customer> GetTopCustomersByBookingsCount(int numCustomers);
     }
 }
