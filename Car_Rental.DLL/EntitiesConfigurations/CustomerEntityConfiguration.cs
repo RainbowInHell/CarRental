@@ -9,7 +9,7 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Customer> customerEntityBuilder)
         {
             customerEntityBuilder
-                .HasKey(e => e.CustomerID);
+                .HasKey(e => e.Id);
 
             customerEntityBuilder
                 .Property(e => e.Name)

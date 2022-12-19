@@ -8,7 +8,7 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<VehicleModel> vehicleModelEntityBuilder)
         {
             vehicleModelEntityBuilder
-                .HasKey(e => e.VehicleModelID);
+                .HasKey(e => e.Id);
 
             vehicleModelEntityBuilder
                 .Property(e => e.Name)

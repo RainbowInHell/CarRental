@@ -1,10 +1,12 @@
-﻿namespace Car_Rental.DLL.Entities
+﻿using CarRental.DLL.Entities;
+
+namespace Car_Rental.DLL.Entities
 {
     public enum BookingStatus { Closed, Active };
 
-    public class Booking
+    public class Booking : BaseEntity
     {
-        public int BookingID { get; set; }
+        public override int Id { get; set; }
         public DateOnly PickUpDate { get; set; }
         public DateOnly PickOffDate { get; set; }
         public BookingStatus Status { get; set; }

@@ -1,8 +1,10 @@
-﻿namespace Car_Rental.DLL.Entities
+﻿using CarRental.DLL.Entities;
+
+namespace Car_Rental.DLL.Entities
 {
-    public class Manufacturer
+    public class Manufacturer : BaseEntity
     {
-        public int ManufacturerID { get; set; }
+        public override int Id { get; set; }
         public string Name { get; set; }
 
         public ICollection<VehicleModel> VehicleModels { get; set; }

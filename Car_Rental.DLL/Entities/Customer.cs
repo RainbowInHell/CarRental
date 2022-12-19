@@ -1,8 +1,10 @@
-﻿namespace Car_Rental.DLL.Entities
+﻿using CarRental.DLL.Entities;
+
+namespace Car_Rental.DLL.Entities
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public int CustomerID { get; set; }
+        public override int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
