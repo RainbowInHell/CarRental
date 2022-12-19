@@ -9,19 +9,18 @@ namespace CarRental.DLL.Repositories
         public CustomerRepository(CarRentalContext context) : base(context)
         { }
 
-        public IEnumerable<Customer> GetTopCustomersByBookingsCount(int numCustomers)
+        public async Task<IEnumerable<Customer>> GetTopCustomersByBookingsCount(int numCustomers)
         {
-            if(numCustomers <= 0) 
+            if (numCustomers <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            return context.Customers
-                          .AsNoTracking()
-                          .AsEnumerable()
-                          .OrderByDescending(c => c.Bookings.Count())
-                          .Take(numCustomers)
-                          .ToList();
+            return await context.Customers
+                                .AsNoTracking()
+                                .OrderByDescending(c => c.Bookings.Count())
+                                .Take(numCustomers)
+                                .ToListAsync();
         }
     }
 }

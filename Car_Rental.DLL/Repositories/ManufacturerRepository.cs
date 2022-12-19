@@ -10,12 +10,12 @@ namespace CarRental.DLL.Repository
         public ManufacturerRepository(CarRentalContext context) : base(context)
         { }
 
-        public IEnumerable<Manufacturer> GetManufacturersWithModels()
+        public async Task<IEnumerable<Manufacturer>> GetManufacturersWithModels()
         {
-            return context.Manufacturers
-                          .Include(x => x.VehicleModels)
-                          .Where(x => x.VehicleModels.Any())
-                          .ToList();
+            return await context.Manufacturers
+                                .Include(x => x.VehicleModels)
+                                .Where(x => x.VehicleModels.Any())
+                                .ToListAsync();
         }
     }
 }

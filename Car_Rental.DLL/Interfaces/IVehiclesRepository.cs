@@ -4,6 +4,6 @@ namespace CarRental.DLL.Interfaces
 {
     public interface IVehiclesRepository : IGenericRepository<Vehicle>
     {
-        IEnumerable<Vehicle> GetUnRentedVehicles();
+        Task<IEnumerable<Vehicle>> GetUnRentedVehicles();
     }
 }

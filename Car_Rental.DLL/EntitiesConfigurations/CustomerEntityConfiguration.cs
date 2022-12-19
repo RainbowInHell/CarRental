@@ -13,42 +13,36 @@ namespace CarRental.DLL.EntitiesConfigurations
 
             customerEntityBuilder
                 .Property(x => x.Name)
-                .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
             
             customerEntityBuilder
                 .Property(x => x.Surname)
-                .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
 
             customerEntityBuilder
                 .Property(x => x.Email)
-                .HasColumnType("varchar")
                 .HasMaxLength(40)
                 .IsRequired();
 
             customerEntityBuilder
                 .Property(x => x.ContactNumber)
-                .HasColumnType("varchar")
-                .HasMaxLength(13).IsRequired();
+                .HasMaxLength(13)
+                .IsRequired();
 
             customerEntityBuilder
                 .Property(x => x.PassportNumber)
-                .HasColumnType("varchar")
                 .HasMaxLength(14)
                 .IsRequired();
             
             customerEntityBuilder
                 .Property(x => x.Adres)
-                .HasColumnType("varchar")
                 .HasMaxLength(40)
                 .IsRequired();
             
             customerEntityBuilder
                 .Property(x => x.DrivingLicenseNumber)
-                .HasColumnType("varchar")
                 .HasMaxLength(15)
                 .IsRequired();
 

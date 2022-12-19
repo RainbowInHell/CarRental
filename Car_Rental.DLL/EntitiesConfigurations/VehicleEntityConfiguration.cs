@@ -13,7 +13,6 @@ namespace CarRental.DLL.EntitiesConfigurations
 
             vehicleEntityBuilder
                 .Property(x => x.IsRented)
-                .HasColumnType("boolean")
                 .IsRequired();
 
             vehicleEntityBuilder

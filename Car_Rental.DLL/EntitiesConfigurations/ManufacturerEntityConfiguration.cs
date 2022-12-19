@@ -13,7 +13,6 @@ namespace CarRental.DLL.EntitiesConfigurations
 
             manufacturerEntityBuilder
                 .Property(x => x.Name)
-                .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
 

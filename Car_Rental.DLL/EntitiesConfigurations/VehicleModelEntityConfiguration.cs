@@ -13,18 +13,15 @@ namespace CarRental.DLL.EntitiesConfigurations
 
             vehicleModelEntityBuilder
                 .Property(x => x.Name)
-                .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
 
             vehicleModelEntityBuilder
                 .Property(x => x.Mileage)
-                .HasColumnType("integer")
                 .IsRequired();
 
             vehicleModelEntityBuilder
                 .Property(x => x.CreatedYear)
-                .HasColumnType("integer")
                 .IsRequired();
 
             vehicleModelEntityBuilder

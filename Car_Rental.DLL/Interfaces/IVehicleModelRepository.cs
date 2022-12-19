@@ -4,6 +4,6 @@ namespace CarRental.DLL.Interfaces
 {
     public interface IVehicleModelRepository : IGenericRepository<VehicleModel>
     {
-        IEnumerable<VehicleModel> GetMileageInBetween(int mileageFrom, int mileageTo);
+        Task<IEnumerable<VehicleModel>> GetMileageInBetween(int mileageFrom, int mileageTo);
     }
 }

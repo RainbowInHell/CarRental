@@ -9,13 +9,12 @@ namespace CarRental.DLL.Repositories
         public VehicleRepository(CarRentalContext context) : base(context)
         { }
 
-        public IEnumerable<Vehicle> GetUnRentedVehicles()
+        public async Task<IEnumerable<Vehicle>> GetUnRentedVehicles()
         {
-            return context.Vehicles
+            return await context.Vehicles
                           .AsNoTracking()
-                          .AsEnumerable()
                           .Where(x => !x.IsRented)
-                          .ToList();
+                          .ToListAsync();
         }
     }
 }
