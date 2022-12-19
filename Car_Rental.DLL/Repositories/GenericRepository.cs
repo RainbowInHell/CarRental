@@ -7,6 +7,7 @@ namespace CarRental.DLL.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         protected readonly CarRentalContext _context = null;
+        private readonly DbSet<T> _dbSet = null;
 
         public GenericRepository(CarRentalContext context)
         {
@@ -16,16 +17,17 @@ namespace CarRental.DLL.Repositories
             }
 
             _context = context;
+            _dbSet = _context.Set<T>();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _context.Set<T>().AsNoTracking().ToListAsync();
+            return await _dbSet.AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task InsertAsync(T entity)
@@ -35,7 +37,7 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            await _context.Set<T>().AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task UpdateAsync(T entity)
@@ -45,11 +47,11 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            T existing = await _context.Set<T>().FindAsync(entity.Id);
+            T existing = await _dbSet.FindAsync(entity.Id);
 
             if (existing != null)
             {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
+                _dbSet.Entry(existing).CurrentValues.SetValues(entity);
             }
         }
 
@@ -60,12 +62,7 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            _context.Set<T>().Remove(entity);
-        }
-
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
+            _dbSet.Remove(entity);
         }
     }
 }

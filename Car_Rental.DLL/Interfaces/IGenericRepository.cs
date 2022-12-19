@@ -1,6 +1,4 @@
-﻿using CarRental.DLL.Entities;
-
-namespace CarRental.DLL.Interfaces
+﻿namespace CarRental.DLL.Interfaces
 {
     public interface IGenericRepository<BaseEntity> where BaseEntity : class
     {
@@ -9,6 +7,5 @@ namespace CarRental.DLL.Interfaces
         Task InsertAsync(BaseEntity entity);
         Task UpdateAsync(BaseEntity entity);
         void Delete(BaseEntity entity);
-        Task SaveAsync();
     }
 }
