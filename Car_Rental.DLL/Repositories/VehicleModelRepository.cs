@@ -16,7 +16,7 @@ namespace CarRental.DLL.Repositories
                 throw new ArgumentOutOfRangeException();
             }
 
-            return await context.VehicleModels
+            return await _context.VehicleModels
                           .AsNoTracking()
                           .Where(x => x.Mileage >= mileageFrom && x.Mileage <= mileageTo)
                           .ToListAsync();

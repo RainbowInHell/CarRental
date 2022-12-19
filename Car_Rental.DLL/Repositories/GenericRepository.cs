@@ -6,21 +6,26 @@ namespace CarRental.DLL.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        protected readonly CarRentalContext context = null;
+        protected readonly CarRentalContext _context = null;
 
         public GenericRepository(CarRentalContext context)
         {
-            this.context = context;
+            if (context == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _context = context;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await context.Set<T>().AsNoTracking().ToListAsync();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task InsertAsync(T entity)
@@ -30,7 +35,7 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            await context.Set<T>().AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
         public async Task UpdateAsync(T entity)
@@ -40,11 +45,11 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            T existing = await context.Set<T>().FindAsync(entity.Id);
+            T existing = await _context.Set<T>().FindAsync(entity.Id);
 
             if (existing != null)
             {
-                context.Entry(existing).CurrentValues.SetValues(entity);
+                _context.Entry(existing).CurrentValues.SetValues(entity);
             }
         }
 
@@ -55,12 +60,12 @@ namespace CarRental.DLL.Repositories
                 return;
             }
 
-            context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
         }
 
         public async Task SaveAsync()
         {
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL

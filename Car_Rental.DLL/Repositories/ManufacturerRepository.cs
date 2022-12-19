@@ -12,7 +12,7 @@ namespace CarRental.DLL.Repository
 
         public async Task<IEnumerable<Manufacturer>> GetManufacturersWithModels()
         {
-            return await context.Manufacturers
+            return await _context.Manufacturers
                                 .Include(x => x.VehicleModels)
                                 .Where(x => x.VehicleModels.Any())
                                 .ToListAsync();

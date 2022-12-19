@@ -16,7 +16,7 @@ namespace CarRental.DLL.Repositories
                 throw new ArgumentOutOfRangeException();
             }
 
-            return await context.Customers
+            return await _context.Customers
                                 .AsNoTracking()
                                 .OrderByDescending(c => c.Bookings.Count())
                                 .Take(numCustomers)
