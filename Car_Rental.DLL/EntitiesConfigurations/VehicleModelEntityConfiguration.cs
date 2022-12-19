@@ -8,28 +8,28 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<VehicleModel> vehicleModelEntityBuilder)
         {
             vehicleModelEntityBuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             vehicleModelEntityBuilder
-                .Property(e => e.Name)
+                .Property(x => x.Name)
                 .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .Property(e => e.Mileage)
+                .Property(x => x.Mileage)
                 .HasColumnType("integer")
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .Property(e => e.CreatedYear)
+                .Property(x => x.CreatedYear)
                 .HasColumnType("integer")
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .HasOne(e => e.Manufacturer)
-                .WithMany(e => e.VehicleModels)
-                .HasForeignKey(e => e.ManufacturerID)
+                .HasOne(m => m.Manufacturer)
+                .WithMany(vm => vm.VehicleModels)
+                .HasForeignKey(m => m.ManufacturerID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

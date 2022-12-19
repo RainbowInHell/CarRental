@@ -20,13 +20,15 @@ namespace CarRental.DLL.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await context.Set<T>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+            return await context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task InsertAsync(T entity)
         {
             if (entity == null)
+            {
                 return;
+            }
 
             await context.Set<T>().AddAsync(entity);
         }
@@ -34,7 +36,9 @@ namespace CarRental.DLL.Repositories
         public async Task UpdateAsync(T entity)
         {
             if (entity == null)
+            {
                 return;
+            }
 
             T existing = await context.Set<T>().FindAsync(entity.Id);
 
@@ -47,7 +51,9 @@ namespace CarRental.DLL.Repositories
         public void Delete(T entity)
         {
             if (entity == null)
+            {
                 return;
+            }
 
             context.Set<T>().Remove(entity);
         }

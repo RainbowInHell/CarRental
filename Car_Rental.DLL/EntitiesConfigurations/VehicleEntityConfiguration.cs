@@ -9,17 +9,17 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Vehicle> vehicleEntityBuilder)
         {
             vehicleEntityBuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             vehicleEntityBuilder
-                .Property(e => e.IsRented)
+                .Property(x => x.IsRented)
                 .HasColumnType("boolean")
                 .IsRequired();
 
             vehicleEntityBuilder
-                .HasOne(e => e.VehicleModel)
-                .WithMany(e => e.Vehicles)
-                .HasForeignKey(e => e.VehicleModelID)
+                .HasOne(vm => vm.VehicleModel)
+                .WithMany(v => v.Vehicles)
+                .HasForeignKey(vm => vm.VehicleModelID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

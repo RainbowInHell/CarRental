@@ -9,17 +9,17 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Manufacturer> manufacturerEntityBuilder)
         {
             manufacturerEntityBuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             manufacturerEntityBuilder
-                .Property(e => e.Name)
+                .Property(x => x.Name)
                 .HasColumnType("varchar")
                 .HasMaxLength(25)
                 .IsRequired();
 
             manufacturerEntityBuilder
-                .HasMany(e => e.VehicleModels)
-                .WithOne(e => e.Manufacturer);
+                .HasMany(vm => vm.VehicleModels)
+                .WithOne(m => m.Manufacturer);
         }
     }
 }
