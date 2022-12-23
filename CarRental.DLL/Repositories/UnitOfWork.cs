@@ -5,7 +5,7 @@ namespace CarRental.DLL.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly CarRentalContext _context = null;
+        private readonly CarRentalContext _context;
         private IManufacturerRepository _manufacturerRepository;
         private IVehicleModelRepository _vehicleModelRepository;
         private IVehiclesRepository _vehiclesRepository;
@@ -15,43 +15,27 @@ namespace CarRental.DLL.Repositories
 
         public UnitOfWork(CarRentalContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException();
-            }
+            _context = context ?? throw new ArgumentNullException();
 
             _context = context;
         }
 
-        public IManufacturerRepository ManufacturerRepository
-        {
-            get { return _manufacturerRepository ?? (_manufacturerRepository = new ManufacturerRepository(_context)); }
-        }
+        public IManufacturerRepository ManufacturerRepository =>
+             _manufacturerRepository ??= new ManufacturerRepository(_context);
 
-        public IVehicleModelRepository VehicleModelRepository
-        {
-            get { return _vehicleModelRepository ?? (_vehicleModelRepository = new VehicleModelRepository(_context)); }
-        }
+        public IVehicleModelRepository VehicleModelRepository =>
+            _vehicleModelRepository ??= new VehicleModelRepository(_context); 
 
-        public IVehiclesRepository VehicleRepository
-        {
-            get { return _vehiclesRepository ?? (_vehiclesRepository = new VehicleRepository(_context)); }
-        }
+        public IVehiclesRepository VehicleRepository =>
+            _vehiclesRepository ??= new VehicleRepository(_context); 
 
-        public IBookingRepository BookingRepository
-        {
-            get { return _bookingRepository ?? (_bookingRepository = new BookingRepository(_context)); }
-        }
+        public IBookingRepository BookingRepository =>
+            _bookingRepository ??= new BookingRepository(_context); 
 
-        public ICustomerRepository CustomerRepository
-        {
-            get { return _customerRepository ?? (_customerRepository = new CustomerRepository(_context)); }
-        }
-
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
+        public ICustomerRepository CustomerRepository =>
+            _customerRepository ??= new CustomerRepository(_context); 
+        
+        public async Task SaveAsync() => await _context.SaveChangesAsync();
 
         protected virtual void Dispose(bool disposing)
         {

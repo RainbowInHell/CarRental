@@ -18,7 +18,7 @@ namespace CarRental.DLL.Repositories
 
             return await _context.Customers
                                 .AsNoTracking()
-                                .OrderByDescending(c => c.Bookings.Count())
+                                .OrderByDescending(x => x.Bookings.Count())
                                 .Take(numCustomers)
                                 .ToListAsync();
         }

@@ -6,15 +6,12 @@ namespace CarRental.DLL.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        protected readonly CarRentalContext _context = null;
-        private readonly DbSet<T> _dbSet = null;
+        protected readonly CarRentalContext _context;
+        private readonly DbSet<T> _dbSet;
 
         public GenericRepository(CarRentalContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException();
-            }
+            _context = context ?? throw new ArgumentNullException();
 
             _context = context;
             _dbSet = _context.Set<T>();
@@ -34,7 +31,7 @@ namespace CarRental.DLL.Repositories
         {
             if (entity == null)
             {
-                return;
+                throw new ArgumentNullException();
             }
 
             await _dbSet.AddAsync(entity);
@@ -44,7 +41,7 @@ namespace CarRental.DLL.Repositories
         {
             if (entity == null)
             {
-                return;
+                throw new ArgumentNullException();
             }
 
             T existing = await _dbSet.FindAsync(entity.Id);
@@ -59,7 +56,7 @@ namespace CarRental.DLL.Repositories
         {
             if (entity == null)
             {
-                return;
+                throw new ArgumentNullException();
             }
 
             _dbSet.Remove(entity);

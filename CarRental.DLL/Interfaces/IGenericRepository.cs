@@ -1,11 +1,13 @@
-﻿namespace CarRental.DLL.Interfaces
+﻿using CarRental.DLL.Entities;
+
+namespace CarRental.DLL.Interfaces
 {
-    public interface IGenericRepository<BaseEntity> where BaseEntity : class
+    public interface IGenericRepository<T> where T : BaseEntity
     {
-        Task<IEnumerable<BaseEntity>> GetAllAsync();
-        Task<BaseEntity> GetByIdAsync(int id);
-        Task InsertAsync(BaseEntity entity);
-        Task UpdateAsync(BaseEntity entity);
-        void Delete(BaseEntity entity);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task InsertAsync(T entity);
+        Task UpdateAsync(T entity);
+        void Delete(T entity);
     }
 }
