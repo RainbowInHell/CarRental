@@ -3,6 +3,7 @@ using System;
 using CarRental.DLL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CarRental.DLL.Migrations
 {
     [DbContext(typeof(CarRentalContext))]
-    partial class CarRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20221219164011_varchar type has been removed")]
+    partial class varchartypehasbeenremoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,37 +66,37 @@ namespace CarRental.DLL.Migrations
                     b.Property<string>("Adres")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(40)");
 
                     b.Property<string>("ContactNumber")
                         .IsRequired()
                         .HasMaxLength(13)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(13)");
 
                     b.Property<string>("DrivingLicenseNumber")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(15)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(40)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(25)");
 
                     b.Property<string>("PassportNumber")
                         .IsRequired()
                         .HasMaxLength(14)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(14)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(25)");
 
                     b.HasKey("Id");
 
@@ -111,7 +114,7 @@ namespace CarRental.DLL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(25)");
 
                     b.HasKey("Id");
 
@@ -156,7 +159,7 @@ namespace CarRental.DLL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("varchar");
+                        .HasColumnType("character varying(25)");
 
                     b.HasKey("Id");
 

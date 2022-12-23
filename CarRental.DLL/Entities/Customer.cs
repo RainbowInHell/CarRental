@@ -11,7 +11,7 @@ namespace Car_Rental.DLL.Entities
         public string ContactNumber { get; set; }
         public string PassportNumber { get; set; }
         public string Adres { get; set; }
-        public int DrivingLicenseNumber { get; set; }
+        public string DrivingLicenseNumber { get; set; }
 
         public ICollection<Booking> Bookings { get; set; }
     }

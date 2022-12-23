@@ -9,52 +9,46 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Customer> customerEntityBuilder)
         {
             customerEntityBuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             customerEntityBuilder
-                .Property(e => e.Name)
-                .HasColumnType("varchar")
+                .Property(x => x.Name)
                 .HasMaxLength(25)
                 .IsRequired();
             
             customerEntityBuilder
-                .Property(e => e.Surname)
-                .HasColumnType("varchar")
+                .Property(x => x.Surname)
                 .HasMaxLength(25)
                 .IsRequired();
 
             customerEntityBuilder
-                .Property(e => e.Email)
-                .HasColumnType("varchar")
+                .Property(x => x.Email)
                 .HasMaxLength(40)
                 .IsRequired();
 
             customerEntityBuilder
-                .Property(e => e.ContactNumber)
-                .HasColumnType("varchar")
-                .HasMaxLength(13).IsRequired();
+                .Property(x => x.ContactNumber)
+                .HasMaxLength(13)
+                .IsRequired();
 
             customerEntityBuilder
-                .Property(e => e.PassportNumber)
-                .HasColumnType("varchar")
+                .Property(x => x.PassportNumber)
                 .HasMaxLength(14)
                 .IsRequired();
             
             customerEntityBuilder
-                .Property(e => e.Adres)
-                .HasColumnType("varchar")
+                .Property(x => x.Adres)
                 .HasMaxLength(40)
                 .IsRequired();
             
             customerEntityBuilder
-                .Property(e => e.DrivingLicenseNumber)
-                .HasColumnType("varchar")
+                .Property(x => x.DrivingLicenseNumber)
                 .HasMaxLength(15)
                 .IsRequired();
 
             customerEntityBuilder
-                .HasMany(e => e.Bookings)
-                .WithOne(e => e.Customer);
+                .HasMany(b => b.Bookings)
+                .WithOne(c => c.Customer);
         }
     }
 }

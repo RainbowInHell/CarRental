@@ -9,25 +9,25 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Booking> bookingEntitybuilder)
         {
             bookingEntitybuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             bookingEntitybuilder
-                .Property(e => e.PickUpDate);
-            
-            bookingEntitybuilder
-                .Property(e => e.PickOffDate);
-            
-            bookingEntitybuilder
-                .Property(e => e.Status);
+                .Property(x => x.PickUpDate);
 
             bookingEntitybuilder
-                .HasOne(e => e.Customer)
-                .WithMany(e => e.Bookings)
-                .HasForeignKey(e => e.CustomerID)
+                .Property(x => x.PickOffDate);
+
+            bookingEntitybuilder
+                .Property(x => x.Status);
+
+            bookingEntitybuilder
+                .HasOne(x => x.Customer)
+                .WithMany(x => x.Bookings)
+                .HasForeignKey(x => x.CustomerID)
                 .OnDelete(DeleteBehavior.Cascade);
-            
+
             bookingEntitybuilder
-                .HasOne(a => a.Vehicle)
+                .HasOne(v => v.Vehicle)
                 .WithOne(b => b.Booking)
                 .HasForeignKey<Vehicle>(b => b.Id);
         }

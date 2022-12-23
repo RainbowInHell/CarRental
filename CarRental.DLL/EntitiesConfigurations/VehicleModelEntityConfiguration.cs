@@ -1,6 +1,7 @@
 ﻿using Car_Rental.DLL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace CarRental.DLL.EntitiesConfigurations
 {
     public class VehicleModelEntityConfiguration : IEntityTypeConfiguration<VehicleModel>
@@ -8,28 +9,25 @@ namespace CarRental.DLL.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<VehicleModel> vehicleModelEntityBuilder)
         {
             vehicleModelEntityBuilder
-                .HasKey(e => e.Id);
+                .HasKey(x => x.Id);
 
             vehicleModelEntityBuilder
-                .Property(e => e.Name)
-                .HasColumnType("varchar")
+                .Property(x => x.Name)
                 .HasMaxLength(25)
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .Property(e => e.Mileage)
-                .HasColumnType("integer")
+                .Property(x => x.Mileage)
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .Property(e => e.CreatedYear)
-                .HasColumnType("integer")
+                .Property(x => x.CreatedYear)
                 .IsRequired();
 
             vehicleModelEntityBuilder
-                .HasOne(e => e.Manufacturer)
-                .WithMany(e => e.VehicleModels)
-                .HasForeignKey(e => e.ManufacturerID)
+                .HasOne(m => m.Manufacturer)
+                .WithMany(vm => vm.VehicleModels)
+                .HasForeignKey(m => m.ManufacturerID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
