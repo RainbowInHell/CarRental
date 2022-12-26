@@ -8,6 +8,6 @@ namespace CarRental.DLL.Interfaces
         Task<T> GetByIdAsync(int id);
         Task InsertAsync(T entity);
         Task UpdateAsync(T entity);
-        void Delete(T entity);
+        Task Delete(T entity);
     }
 }

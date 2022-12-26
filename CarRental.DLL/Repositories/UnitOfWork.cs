@@ -6,17 +6,15 @@ namespace CarRental.DLL.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly CarRentalContext _context;
-        private IManufacturerRepository _manufacturerRepository;
-        private IVehicleModelRepository _vehicleModelRepository;
-        private IVehiclesRepository _vehiclesRepository;
-        private IBookingRepository _bookingRepository;
-        private ICustomerRepository _customerRepository;
+        private IManufacturerRepository? _manufacturerRepository;
+        private IVehicleModelRepository? _vehicleModelRepository;
+        private IVehiclesRepository? _vehiclesRepository;
+        private IBookingRepository? _bookingRepository;
+        private ICustomerRepository? _customerRepository;
         private bool _disposed = false;
 
         public UnitOfWork(CarRentalContext context)
         {
-            _context = context ?? throw new ArgumentNullException();
-
             _context = context;
         }
 

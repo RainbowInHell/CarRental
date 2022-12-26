@@ -11,17 +11,14 @@ namespace CarRental.DLL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
 
-        public CarRentalContext() 
-        { }
-        
-        public CarRentalContext(DbContextOptions<CarRentalContext> options) : base(options)
-        { }
+        public CarRentalContext(DbContextOptions options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarRentalContext).Assembly);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

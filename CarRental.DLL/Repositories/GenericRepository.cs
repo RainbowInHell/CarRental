@@ -11,8 +11,6 @@ namespace CarRental.DLL.Repositories
 
         public GenericRepository(CarRentalContext context)
         {
-            _context = context ?? throw new ArgumentNullException();
-
             _context = context;
             _dbSet = _context.Set<T>();
         }
@@ -44,15 +42,11 @@ namespace CarRental.DLL.Repositories
                 throw new ArgumentNullException();
             }
 
-            T existing = await _dbSet.FindAsync(entity.Id);
-
-            if (existing != null)
-            {
-                _dbSet.Entry(existing).CurrentValues.SetValues(entity);
-            }
+            _dbSet.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task Delete(T entity)
         {
             if (entity == null)
             {
@@ -60,6 +54,7 @@ namespace CarRental.DLL.Repositories
             }
 
             _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }
