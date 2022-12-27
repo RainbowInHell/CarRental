@@ -18,6 +18,7 @@ namespace CarRental.Extensions
         public static void RegisterPipelineComponents(this WebApplication app, Type scanningType)
         {
             var registrars = GetRegistrars<IWebApplicationRegistrar>(scanningType);
+
             foreach (var registrar in registrars)
             {
                 registrar.RegisterPipelineComponents(app);
