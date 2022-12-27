@@ -1,9 +1,8 @@
 ﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Interfaces;
-using CarRental.DLL.Repositories;
+using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarRental.DLL.Repository
+namespace CarRental.DLL.Repositories
 {
     public class ManufacturerRepository : GenericRepository<Manufacturer>, IManufacturerRepository
     {

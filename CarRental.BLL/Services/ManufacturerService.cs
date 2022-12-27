@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CarRental.BLL.DTO;
-using CarRental.BLL.Interfaces;
-using CarRental.DLL.Interfaces;
+using CarRental.BLL.Contracts;
+using CarRental.DLL.Contracts;
 
 namespace CarRental.BLL.Services
 {

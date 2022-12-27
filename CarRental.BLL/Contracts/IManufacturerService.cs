@@ -1,6 +1,6 @@
 ﻿using CarRental.BLL.DTO;
 
-namespace CarRental.BLL.Interfaces
+namespace CarRental.BLL.Contracts
 {
     public interface IManufacturerService
     {

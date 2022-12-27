@@ -1,5 +1,4 @@
-﻿using CarRental.DLL.Interfaces;
-using CarRental.DLL.Repository;
+﻿using CarRental.DLL.Contracts;
 
 namespace CarRental.DLL.Repositories
 {

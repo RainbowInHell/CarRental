@@ -1,5 +1,5 @@
 ﻿using CarRental.DLL.Entities;
-using CarRental.DLL.Interfaces;
+using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
@@ -53,7 +53,7 @@ namespace CarRental.DLL.Repositories
                 throw new ArgumentNullException();
             }
 
-            _dbSet.Remove(entity);
+            _dbSet.Entry(entity).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
     }

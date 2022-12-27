@@ -1,8 +1,8 @@
-﻿using CarRental.BLL.Interfaces;
-using CarRental.BLL.Mappers;
+﻿using System.Reflection;
+using CarRental.BLL.Contracts;
 using CarRental.BLL.Services;
 using CarRental.DLL;
-using CarRental.DLL.Interfaces;
+using CarRental.DLL.Contracts;
 using CarRental.DLL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -30,9 +30,10 @@ namespace CarRental
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IManufacturerService, ManufacturerService>();
-            services.AddAutoMapper(typeof(ManufacturerProfile));
+            services.AddAutoMapper(Assembly.Load("CarRental.BLL"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,19 +41,18 @@ namespace CarRental
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(x =>
-                {
-                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                    x.RoutePrefix = string.Empty;
-                });
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                x.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(x =>
             {

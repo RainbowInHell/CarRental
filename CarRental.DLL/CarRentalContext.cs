@@ -12,8 +12,7 @@ namespace CarRental.DLL
         public DbSet<Booking> Bookings { get; set; }
 
         public CarRentalContext(DbContextOptions options) : base(options)
-        {
-        }
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

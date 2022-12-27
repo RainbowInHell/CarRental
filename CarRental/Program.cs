@@ -2,6 +2,8 @@ using CarRental;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.RegisterServices();
+
 var startup = new Startup(builder.Configuration);
 
 startup.ConfigureServices(builder.Services);
