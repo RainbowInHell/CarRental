@@ -1,15 +1,11 @@
-using CarRental;
+using CarRental.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.RegisterServices();
-
-var startup = new Startup(builder.Configuration);
-
-startup.ConfigureServices(builder.Services);
+builder.RegisterServices(typeof(Program));
 
 var app = builder.Build();
 
-startup.Configure(app, builder.Environment); 
+app.RegisterPipelineComponents(typeof(Program));
 
 app.Run();
