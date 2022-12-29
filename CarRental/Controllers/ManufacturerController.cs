@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ManufacturersController : ControllerBase
     {
         private readonly IManufacturerService _manufacturerService;

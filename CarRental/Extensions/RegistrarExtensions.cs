@@ -1,5 +1,4 @@
-﻿using CarRental.Registrars;
-using CarRental.Registrars.Contracts;
+﻿using CarRental.Registrars.Contracts;
 
 namespace CarRental.Extensions
 {

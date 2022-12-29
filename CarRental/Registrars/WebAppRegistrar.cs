@@ -1,5 +1,4 @@
 ﻿using CarRental.Registrars.Contracts;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace CarRental.Registrars
 {
@@ -18,10 +17,7 @@ namespace CarRental.Registrars
 
             app.UseRouting();
 
-            app.UseEndpoints(x =>
-            {
-                x.MapControllers();
-            });
+            app.MapControllers();
         }
     }
 }

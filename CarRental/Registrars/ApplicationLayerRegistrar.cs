@@ -14,7 +14,6 @@ namespace CarRental.Registrars
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
-            builder.Services.AddAutoMapper(Assembly.Load("CarRental.BLL"));
         }
     }
 }
