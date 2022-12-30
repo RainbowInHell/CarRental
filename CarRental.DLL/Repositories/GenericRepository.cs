@@ -22,39 +22,22 @@ namespace CarRental.DLL.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task CreateAsync(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             await _dbSet.AddAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public void Update(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             _dbSet.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(T entity)
+        public void Delete(T entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             _dbSet.Entry(entity).State = EntityState.Deleted;
-            await _context.SaveChangesAsync();
         }
     }
 }

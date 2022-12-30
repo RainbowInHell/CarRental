@@ -6,8 +6,8 @@ namespace CarRental.DLL.Contracts
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task InsertAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task Delete(T entity);
+        Task CreateAsync(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }

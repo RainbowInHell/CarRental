@@ -1,5 +1,5 @@
-﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Contracts;
+﻿using CarRental.DLL.Contracts;
+using CarRental.DLL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
@@ -12,9 +12,9 @@ namespace CarRental.DLL.Repositories
         public async Task<IEnumerable<Manufacturer>> GetManufacturersWithModels()
         {
             return await _context.Manufacturers
-                                .Include(x => x.VehicleModels)
-                                .Where(x => x.VehicleModels.Any())
-                                .ToListAsync();
+                .Include(x => x.VehicleModels)
+                .Where(x => x.VehicleModels.Any())
+                .ToListAsync();
         }
     }
 }

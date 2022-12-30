@@ -1,5 +1,5 @@
-﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Contracts;
+﻿using CarRental.DLL.Contracts;
+using CarRental.DLL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories

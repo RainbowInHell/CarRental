@@ -1,4 +1,4 @@
-﻿using Car_Rental.DLL.Entities;
+﻿using CarRental.DLL.Entities;
 
 namespace CarRental.DLL.Contracts
 {
