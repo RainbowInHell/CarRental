@@ -21,11 +21,11 @@ namespace CarRental.BLL.Services
             return manufacturers.Select(m => (ManufacturerDTO)m);
         }
 
-        public async Task<IEnumerable<ManufacturerDTO>> GetManufacturersWithModels()
+        public async Task<IEnumerable<ManufacturerWithModelsDTO>> GetManufacturersWithModels()
         {
             var manufacturers = await _unitOfWork.ManufacturerRepository.GetManufacturersWithModels();
 
-            return manufacturers.Select(m => (ManufacturerDTO)m);
+            return manufacturers.Select(m => (ManufacturerWithModelsDTO)m);
         }
 
         public async Task<ManufacturerDTO> GetManufacturerById(int id)
