@@ -1,5 +1,5 @@
-﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Interfaces;
+﻿using CarRental.DLL.Contracts;
+using CarRental.DLL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
@@ -12,9 +12,9 @@ namespace CarRental.DLL.Repositories
         public async Task<IEnumerable<Vehicle>> GetUnRentedVehicles()
         {
             return await _context.Vehicles
-                          .AsNoTracking()
-                          .Where(x => !x.IsRented)
-                          .ToListAsync();
+                .AsNoTracking()
+                .Where(x => !x.IsRented)
+                .ToListAsync();
         }
     }
 }

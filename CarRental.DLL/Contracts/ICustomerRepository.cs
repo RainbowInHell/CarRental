@@ -1,6 +1,6 @@
-﻿using Car_Rental.DLL.Entities;
+﻿using CarRental.DLL.Entities;
 
-namespace CarRental.DLL.Interfaces
+namespace CarRental.DLL.Contracts
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {

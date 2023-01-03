@@ -1,6 +1,4 @@
-﻿using CarRental.DLL.Entities;
-
-namespace CarRental.DLL.Interfaces
+﻿namespace CarRental.DLL.Contracts
 {
     public interface IUnitOfWork : IDisposable
     {

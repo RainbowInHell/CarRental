@@ -1,6 +1,4 @@
-﻿using CarRental.DLL.Entities;
-
-namespace Car_Rental.DLL.Entities
+﻿namespace CarRental.DLL.Entities
 {
     public class Customer : BaseEntity
     {

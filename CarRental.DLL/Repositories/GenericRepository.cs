@@ -1,65 +1,43 @@
 ﻿using CarRental.DLL.Entities;
-using CarRental.DLL.Interfaces;
+using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly CarRentalContext _context;
-        private readonly DbSet<T> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(CarRentalContext context)
         {
-            _context = context ?? throw new ArgumentNullException();
-
             _context = context;
-            _dbSet = _context.Set<T>();
+            _dbSet = _context.Set<TEntity>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task CreateAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             await _dbSet.AddAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public void Update(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            T existing = await _dbSet.FindAsync(entity.Id);
-
-            if (existing != null)
-            {
-                _dbSet.Entry(existing).CurrentValues.SetValues(entity);
-            }
+            _dbSet.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            _dbSet.Remove(entity);
+            _dbSet.Entry(entity).State = EntityState.Deleted;
         }
     }
 }

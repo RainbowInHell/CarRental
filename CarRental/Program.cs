@@ -1,15 +1,11 @@
-using CarRental.DLL;
-using Microsoft.EntityFrameworkCore;
+using CarRental.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<CarRentalContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.RegisterServices(typeof(Program));
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.RegisterPipelineComponents(typeof(Program));
 
 app.Run();

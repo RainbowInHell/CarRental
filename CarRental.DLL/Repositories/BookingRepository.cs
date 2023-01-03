@@ -1,5 +1,5 @@
-﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Interfaces;
+﻿using CarRental.DLL.Entities;
+using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
@@ -12,9 +12,9 @@ namespace CarRental.DLL.Repositories
         public async Task<IEnumerable<Booking>> GetBookingsByStatus(BookingStatus status)
         {
             return await _context.Bookings
-                                .Where(x => x.Status == status)
-                                .AsNoTracking()
-                                .ToListAsync();
+                .Where(x => x.Status == status)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

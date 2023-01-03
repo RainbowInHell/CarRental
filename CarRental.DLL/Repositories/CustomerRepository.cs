@@ -1,5 +1,5 @@
-﻿using Car_Rental.DLL.Entities;
-using CarRental.DLL.Interfaces;
+﻿using CarRental.DLL.Entities;
+using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
@@ -17,10 +17,10 @@ namespace CarRental.DLL.Repositories
             }
 
             return await _context.Customers
-                                .AsNoTracking()
-                                .OrderByDescending(x => x.Bookings.Count())
-                                .Take(numCustomers)
-                                .ToListAsync();
+                .AsNoTracking()
+                .OrderByDescending(x => x.Bookings.Count())
+                .Take(numCustomers)
+                .ToListAsync();
         }
     }
 }
