@@ -12,9 +12,9 @@ namespace CarRental.DLL.Repositories
         public async Task<IEnumerable<Vehicle>> GetUnRentedVehicles()
         {
             return await _context.Vehicles
-                          .AsNoTracking()
-                          .Where(x => !x.IsRented)
-                          .ToListAsync();
+                .AsNoTracking()
+                .Where(x => !x.IsRented)
+                .ToListAsync();
         }
     }
 }

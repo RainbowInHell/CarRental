@@ -1,4 +1,4 @@
-﻿using Car_Rental.DLL.Entities;
+﻿using CarRental.DLL.Entities;
 
 namespace CarRental.BLL.DTO
 {
@@ -9,7 +9,16 @@ namespace CarRental.BLL.DTO
 
         public static explicit operator ManufacturerDTO(Manufacturer manufacturer)
         {
-            return new ManufacturerDTO
+            return manufacturer == null ? null : new ManufacturerDTO
+            {
+                Id = manufacturer.Id,
+                Name = manufacturer.Name
+            };
+        }
+
+        public static explicit operator Manufacturer(ManufacturerDTO manufacturer)
+        {
+            return manufacturer == null ? null : new Manufacturer
             {
                 Id = manufacturer.Id,
                 Name = manufacturer.Name

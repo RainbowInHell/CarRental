@@ -12,9 +12,9 @@ namespace CarRental.DLL.Repositories
         public async Task<IEnumerable<Booking>> GetBookingsByStatus(BookingStatus status)
         {
             return await _context.Bookings
-                                .Where(x => x.Status == status)
-                                .AsNoTracking()
-                                .ToListAsync();
+                .Where(x => x.Status == status)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

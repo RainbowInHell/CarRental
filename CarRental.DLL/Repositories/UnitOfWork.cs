@@ -18,20 +18,20 @@ namespace CarRental.DLL.Repositories
         }
 
         public IManufacturerRepository ManufacturerRepository =>
-             _manufacturerRepository ??= new ManufacturerRepository(_context);
+            _manufacturerRepository ??= new ManufacturerRepository(_context);
 
         public IVehicleModelRepository VehicleModelRepository =>
-            _vehicleModelRepository ??= new VehicleModelRepository(_context); 
+            _vehicleModelRepository ??= new VehicleModelRepository(_context);
 
         public IVehiclesRepository VehicleRepository =>
-            _vehiclesRepository ??= new VehicleRepository(_context); 
+            _vehiclesRepository ??= new VehicleRepository(_context);
 
         public IBookingRepository BookingRepository =>
-            _bookingRepository ??= new BookingRepository(_context); 
+            _bookingRepository ??= new BookingRepository(_context);
 
         public ICustomerRepository CustomerRepository =>
-            _customerRepository ??= new CustomerRepository(_context); 
-        
+            _customerRepository ??= new CustomerRepository(_context);
+
         public async Task SaveAsync() => await _context.SaveChangesAsync();
 
         protected virtual void Dispose(bool disposing)

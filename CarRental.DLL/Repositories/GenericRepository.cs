@@ -4,38 +4,38 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.DLL.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly CarRentalContext _context;
-        private readonly DbSet<T> _dbSet;
+        private readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(CarRentalContext context)
         {
             _context = context;
-            _dbSet = _context.Set<T>();
+            _dbSet = _context.Set<TEntity>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
             return await _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task CreateAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
         }
 
-        public void Update(T entity)
+        public void Update(TEntity entity)
         {
             _dbSet.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
             _dbSet.Entry(entity).State = EntityState.Deleted;
         }

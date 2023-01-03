@@ -2,12 +2,12 @@
 
 namespace CarRental.DLL.Contracts
 {
-    public interface IGenericRepository<T> where T : BaseEntity
+    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByIdAsync(int id);
-        Task CreateAsync(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(int id);
+        Task CreateAsync(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
     }
 }

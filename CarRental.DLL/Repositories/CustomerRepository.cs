@@ -17,10 +17,10 @@ namespace CarRental.DLL.Repositories
             }
 
             return await _context.Customers
-                                .AsNoTracking()
-                                .OrderByDescending(x => x.Bookings.Count())
-                                .Take(numCustomers)
-                                .ToListAsync();
+                .AsNoTracking()
+                .OrderByDescending(x => x.Bookings.Count())
+                .Take(numCustomers)
+                .ToListAsync();
         }
     }
 }

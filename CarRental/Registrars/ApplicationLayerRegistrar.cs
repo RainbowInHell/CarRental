@@ -3,7 +3,6 @@ using CarRental.BLL.Services;
 using CarRental.DLL.Contracts;
 using CarRental.DLL.Repositories;
 using CarRental.Registrars.Contracts;
-using System.Reflection;
 
 namespace CarRental.Registrars
 {
@@ -14,6 +13,7 @@ namespace CarRental.Registrars
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
+            builder.Services.AddTransient<IVehicleModelService, VehicleModelService>();
         }
     }
 }

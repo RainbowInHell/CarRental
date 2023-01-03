@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using Car_Rental.DLL.Entities;
+using CarRental.DLL.Entities;
 using CarRental.BLL.DTO;
 
 public class Benchmark
@@ -41,7 +41,7 @@ public class Benchmark
     [Benchmark]
     public void GetManufacturersWithoutAutoMap()
     {
-        _manufacturers.Select(manufacturer => (ManufacturerDTO)manufacturer);
+        //_manufacturers.Select(manufacturer => (ManufacturerDTO)manufacturer);
     }
 }
 
