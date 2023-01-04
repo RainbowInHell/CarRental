@@ -9,14 +9,6 @@ namespace CarRental.DLL.Repositories
         public ManufacturerRepository(CarRentalContext context) : base(context)
         { }
 
-        //public override async Task<IEnumerable<Manufacturer>> GetAllAsync()
-        //{
-        //    return await _context.Manufacturers
-        //        .AsNoTracking()
-        //        .Include(x => x.VehicleModels)
-        //        .ToListAsync();
-        //}
-
         public async Task<IEnumerable<Manufacturer>> GetManufacturersWithModels()
         {
             return await _context.Manufacturers

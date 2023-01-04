@@ -19,11 +19,6 @@ namespace CarRental.DLL.Repositories
 
         public async Task<IEnumerable<VehicleModel>> GetMileageInBetween(int mileageFrom, int mileageTo)
         {
-            if (mileageFrom < 0 || mileageTo < 0 || mileageFrom > mileageTo)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
             return await _context.VehicleModels
                 .AsNoTracking()
                 .Where(x => x.Mileage >= mileageFrom && x.Mileage <= mileageTo)

@@ -18,7 +18,7 @@ namespace CarRental.Controllers
         /// <summary>
         /// Gets a list of all manufacturers.
         /// </summary>
-        /// <returns>A list of manufacturers.</returns>
+        /// <returns>A list of all manufacturers.</returns>
         [HttpGet]
         public async Task<IActionResult> GetManufacturers()
         {
@@ -28,9 +28,9 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Gets a list of all manufacturers with their associated models.
+        /// Gets a list of all manufacturers with their associated vehicle models.
         /// </summary>
-        /// <returns>A list of manufacturers with their associated models.</returns>
+        /// <returns>A list of manufacturers with their associated vehicle models.</returns>
         [HttpGet("models")]
         public async Task<IActionResult> GetManufacturersWithModels()
         {
@@ -40,10 +40,10 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Gets a manufacturer by ID.
+        /// Gets a manufacturer by id.
         /// </summary>
-        /// <param name="id">The ID of the manufacturer to retrieve.</param>
-        /// <returns>The manufacturer with the specified ID.</returns>
+        /// <param name="id">The id of the manufacturer to retrieve.</param>
+        /// <returns>The manufacturer with the specified id.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetManufacturerById(int id)
         {
