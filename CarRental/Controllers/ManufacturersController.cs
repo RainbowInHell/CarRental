@@ -24,7 +24,7 @@ namespace CarRental.Controllers
         {
             var manufacturers = await _manufacturerService.GetManufacturers();
 
-            return manufacturers == null ? NotFound("The manufacturers were not found.") : Ok(manufacturers);
+            return !manufacturers.Any() ? NotFound("The manufacturers were not found.") : Ok(manufacturers);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CarRental.Controllers
         {
             var manufacturers = await _manufacturerService.GetManufacturersWithModels();
 
-            return manufacturers == null ? NotFound("The manufacturers were not found.") : Ok(manufacturers);
+            return !manufacturers.Any() ? NotFound("The manufacturers were not found.") : Ok(manufacturers);
         }
 
         /// <summary>

@@ -2,8 +2,10 @@
 
 namespace CarRental.BLL.DTO
 {
-    public class ManufacturerWithModelsDTO : ManufacturerDTO
+    public class ManufacturerWithModelsDTO
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
         public ICollection<string> Models { get; set; }
 
         public static explicit operator ManufacturerWithModelsDTO(Manufacturer manufacturer)

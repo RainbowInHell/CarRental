@@ -1,6 +1,5 @@
 ﻿using CarRental.BLL.Contracts;
 using CarRental.BLL.DTO;
-using CarRental.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers
@@ -25,7 +24,7 @@ namespace CarRental.Controllers
         {
             var vehicleModels = await _vehicleModelService.GetVehicleModels();
 
-            return vehicleModels == null ? NotFound("The vehicle models were not found.") : Ok(vehicleModels);
+            return !vehicleModels.Any() ? NotFound("The vehicle models were not found.") : Ok(vehicleModels);
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace CarRental.Controllers
         {
             var vehicleModels = await _vehicleModelService.GetMileageInBetween(mileageFrom, mileageTo);
 
-            return vehicleModels == null ? NotFound("The vehicle models were not found.") : Ok(vehicleModels);
+            return !vehicleModels.Any() ? NotFound("The vehicle models were not found.") : Ok(vehicleModels);
         }
 
         /// <summary>

@@ -18,22 +18,12 @@ namespace CarRental.BLL.Services
         {
             var manufacturers = await _unitOfWork.ManufacturerRepository.GetAllAsync();
 
-            if (!manufacturers.Any())
-            {
-                return null;
-            }
-
             return manufacturers.Select(m => (ManufacturerDTO)m);
         }
 
         public async Task<IEnumerable<ManufacturerWithModelsDTO>> GetManufacturersWithModels()
         {
             var manufacturers = await _unitOfWork.ManufacturerRepository.GetManufacturersWithModels();
-
-            if (!manufacturers.Any())
-            {
-                return null;
-            }
 
             return manufacturers.Select(m => (ManufacturerWithModelsDTO)m);
         }

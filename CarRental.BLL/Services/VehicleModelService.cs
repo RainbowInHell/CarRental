@@ -18,22 +18,12 @@ namespace CarRental.BLL.Services
         {
             var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync();
 
-            if (!vehicleModels.Any())
-            {
-                return null;
-            }
-
             return vehicleModels.Select(vm => (VehicleModelDTO)vm);
         }
 
         public async Task<IEnumerable<VehicleModelDTO>> GetMileageInBetween(int mileageFrom, int mileageTo)
         {
             var vehicleModels = await _unitOfWork.VehicleModelRepository.GetMileageInBetween(mileageFrom, mileageTo);
-
-            if (!vehicleModels.Any())
-            {
-                return null;
-            }
 
             return vehicleModels.Select(vm => (VehicleModelDTO)vm);
         }

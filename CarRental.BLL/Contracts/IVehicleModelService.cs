@@ -10,6 +10,5 @@ namespace CarRental.BLL.Contracts
         public Task CreateVehicleModel(VehicleModelDTO vehicleModel);
         public Task UpdateVehicleModel(VehicleModelDTO vehicleModel);
         public Task DeleteVehicleModel(VehicleModelDTO vehicleModel);
-
     }
 }
