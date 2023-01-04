@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarRental.DLL.EntitiesConfigurations 
+namespace CarRental.DLL.EntitiesConfigurations
 {
     public class VehicleEntityConfiguration : IEntityTypeConfiguration<Vehicle>
     {

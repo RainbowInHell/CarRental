@@ -16,7 +16,7 @@ namespace CarRental.BLL.Services
 
         public async Task<IEnumerable<VehicleModelDTO>> GetVehicleModels()
         {
-            var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync();
+            var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync(x => x.Manufacturer);
 
             return vehicleModels.Select(vm => (VehicleModelDTO)vm);
         }
@@ -30,7 +30,7 @@ namespace CarRental.BLL.Services
 
         public async Task<VehicleModelDTO> GetVehicleModelById(int id)
         {
-            var vehicleModel = await _unitOfWork.VehicleModelRepository.GetByIdAsync(id);
+            var vehicleModel = await _unitOfWork.VehicleModelRepository.GetByIdAsync(id, vm => vm.Manufacturer);
 
             return (VehicleModelDTO)vehicleModel;
         }

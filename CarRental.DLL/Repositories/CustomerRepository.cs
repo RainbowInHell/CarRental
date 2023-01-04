@@ -11,11 +11,6 @@ namespace CarRental.DLL.Repositories
 
         public async Task<IEnumerable<Customer>> GetTopCustomersByBookingsCount(int numCustomers)
         {
-            if (numCustomers <= 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
             return await _context.Customers
                 .AsNoTracking()
                 .OrderByDescending(x => x.Bookings.Count())
