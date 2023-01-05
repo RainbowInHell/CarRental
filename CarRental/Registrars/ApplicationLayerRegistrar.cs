@@ -14,6 +14,7 @@ namespace CarRental.Registrars
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
             builder.Services.AddTransient<IVehicleModelService, VehicleModelService>();
+            builder.Services.AddTransient<IVehicleService, VehicleService>();
         }
     }
 }
