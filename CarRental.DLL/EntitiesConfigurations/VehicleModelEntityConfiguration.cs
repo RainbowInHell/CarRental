@@ -12,7 +12,8 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .HasKey(x => x.Id);
 
             vehicleModelEntityBuilder
-                .HasAlternateKey(x => x.Name);
+                .HasIndex(m => m.Name)
+                .IsUnique();
 
             vehicleModelEntityBuilder
                 .Property(x => x.Name)

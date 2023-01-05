@@ -1,4 +1,4 @@
-﻿using CarRental.BLL.DTO;
+﻿using CarRental.BLL.DTO.ManufacturerProfiles;
 
 namespace CarRental.BLL.Contracts
 {

@@ -1,14 +1,14 @@
-﻿using CarRental.BLL.DTO;
+﻿using CarRental.BLL.DTO.VehicleModelViews;
 
 namespace CarRental.BLL.Contracts
 {
     public interface IVehicleModelService
     {
-        public Task<IEnumerable<VehicleModelDTO>> GetVehicleModels();
-        public Task<IEnumerable<VehicleModelDTO>> GetMileageInBetween(int mileageFrom, int mileageTo);
-        public Task<VehicleModelDTO> GetVehicleModelById(int id);
+        public Task<IEnumerable<VehicleModelWithManufacturerDTO>> GetVehicleModels();
+        public Task<IEnumerable<VehicleModelWithManufacturerDTO>> GetMileageInBetween(int mileageFrom, int mileageTo);
+        public Task<VehicleModelWithManufacturerDTO> GetVehicleModelById(int id);
         public Task CreateVehicleModel(VehicleModelDTO vehicleModel);
         public Task UpdateVehicleModel(VehicleModelDTO vehicleModel);
-        public Task DeleteVehicleModel(VehicleModelDTO vehicleModel);
+        public Task DeleteVehicleModel(VehicleModelWithManufacturerDTO vehicleModel);
     }
 }

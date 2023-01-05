@@ -1,5 +1,5 @@
 ﻿using CarRental.BLL.Contracts;
-using CarRental.BLL.DTO;
+using CarRental.BLL.DTO.VehicleModelViews;
 using CarRental.DLL.Contracts;
 using CarRental.DLL.Entities;
 
@@ -14,25 +14,25 @@ namespace CarRental.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<VehicleModelDTO>> GetVehicleModels()
+        public async Task<IEnumerable<VehicleModelWithManufacturerDTO>> GetVehicleModels()
         {
             var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync(x => x.Manufacturer);
 
-            return vehicleModels.Select(vm => (VehicleModelDTO)vm);
+            return vehicleModels.Select(vm => (VehicleModelWithManufacturerDTO)vm);
         }
 
-        public async Task<IEnumerable<VehicleModelDTO>> GetMileageInBetween(int mileageFrom, int mileageTo)
+        public async Task<IEnumerable<VehicleModelWithManufacturerDTO>> GetMileageInBetween(int mileageFrom, int mileageTo)
         {
             var vehicleModels = await _unitOfWork.VehicleModelRepository.GetMileageInBetween(mileageFrom, mileageTo);
 
-            return vehicleModels.Select(vm => (VehicleModelDTO)vm);
+            return vehicleModels.Select(vm => (VehicleModelWithManufacturerDTO)vm);
         }
 
-        public async Task<VehicleModelDTO> GetVehicleModelById(int id)
+        public async Task<VehicleModelWithManufacturerDTO> GetVehicleModelById(int id)
         {
             var vehicleModel = await _unitOfWork.VehicleModelRepository.GetByIdAsync(id, vm => vm.Manufacturer);
 
-            return (VehicleModelDTO)vehicleModel;
+            return (VehicleModelWithManufacturerDTO)vehicleModel;
         }
 
         public async Task CreateVehicleModel(VehicleModelDTO vehicleModel)
@@ -47,7 +47,7 @@ namespace CarRental.BLL.Services
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task DeleteVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task DeleteVehicleModel(VehicleModelWithManufacturerDTO vehicleModel)
         {
             _unitOfWork.VehicleModelRepository.Delete((VehicleModel)vehicleModel);
             await _unitOfWork.SaveAsync();

@@ -1,6 +1,6 @@
 ﻿using CarRental.DLL.Entities;
 
-namespace CarRental.BLL.DTO
+namespace CarRental.BLL.DTO.ManufacturerProfiles
 {
     public class ManufacturerWithModelsDTO
     {

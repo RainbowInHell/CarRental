@@ -1,7 +1,7 @@
-﻿using CarRental.BLL.DTO;
-using CarRental.BLL.Contracts;
+﻿using CarRental.BLL.Contracts;
 using CarRental.DLL.Contracts;
 using CarRental.DLL.Entities;
+using CarRental.BLL.DTO.ManufacturerProfiles;
 
 namespace CarRental.BLL.Services
 {

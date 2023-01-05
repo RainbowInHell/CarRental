@@ -1,5 +1,5 @@
 ﻿using CarRental.BLL.Contracts;
-using CarRental.BLL.DTO;
+using CarRental.BLL.DTO.VehicleModelViews;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers
@@ -86,7 +86,7 @@ namespace CarRental.Controllers
         /// <param name="vehicleModel">The vehicle model to delete.</param>
         /// <returns>A status code indicating the result of the operation.</returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteManufacturer(VehicleModelDTO vehicleModel)
+        public async Task<IActionResult> DeleteManufacturer(VehicleModelWithManufacturerDTO vehicleModel)
         {
             await _vehicleModelService.DeleteVehicleModel(vehicleModel);
 

@@ -1,8 +1,9 @@
-﻿using CarRental.DLL.Entities;
+﻿using CarRental.BLL.DTO.ManufacturerProfiles;
+using CarRental.DLL.Entities;
 
-namespace CarRental.BLL.DTO
+namespace CarRental.BLL.DTO.VehicleModelViews
 {
-    public class VehicleModelDTO
+    public class VehicleModelWithManufacturerDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -10,9 +11,9 @@ namespace CarRental.BLL.DTO
         public int CreatedYear { get; set; }
         public ManufacturerDTO Manufacturer { get; set; }
 
-        public static explicit operator VehicleModelDTO(VehicleModel vehicleModel)
+        public static explicit operator VehicleModelWithManufacturerDTO(VehicleModel vehicleModel)
         {
-            return vehicleModel == null ? null : new VehicleModelDTO
+            return vehicleModel == null ? null : new VehicleModelWithManufacturerDTO
             {
                 Id = vehicleModel.Id,
                 Name = vehicleModel.Name,
@@ -22,7 +23,7 @@ namespace CarRental.BLL.DTO
             };
         }
 
-        public static explicit operator VehicleModel(VehicleModelDTO vehicleModel)
+        public static explicit operator VehicleModel(VehicleModelWithManufacturerDTO vehicleModel)
         {
             return vehicleModel == null ? null : new VehicleModel
             {
