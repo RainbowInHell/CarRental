@@ -4,22 +4,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers
 {
+    /// <summary>
+    /// Represents a controller for managing vehicle models.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class VehicleModelsController : ControllerBase
+    public class VehicleModelController : ControllerBase
     {
         private readonly IVehicleModelService _vehicleModelService;
 
-        public VehicleModelsController(IVehicleModelService vehicleModelService)
+        public VehicleModelController(IVehicleModelService vehicleModelService)
         {
             _vehicleModelService = vehicleModelService;
         }
 
         /// <summary>
-        /// Gets a list of all vehicle models.
+        /// Gets a list of vehicle models.
         /// </summary>
-        /// <returns>A list of all vehicle models.</returns>
+        /// <returns>A list of vehicle models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetVehicleModels()
         {
             var vehicleModels = await _vehicleModelService.GetVehicleModels();
@@ -34,6 +39,8 @@ namespace CarRental.Controllers
         /// <param name="mileageTo">The maximum mileage to filter by.</param>
         /// <returns>A list of vehicle models with mileage between the given values.</returns>
         [HttpGet("mileage")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetMileageInBetween(int mileageFrom, int mileageTo)
         {
             var vehicleModels = await _vehicleModelService.GetMileageInBetween(mileageFrom, mileageTo);
@@ -42,11 +49,13 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Gets a vehicle model by id.
+        /// Gets a vehicle model by its ID.
         /// </summary>
-        /// <param name="id">The id of the vehicle model to retrieve.</param>
-        /// <returns>The vehicle model with the specified id.</returns>
+        /// <param name="id">The ID of the vehicle model to retrieve.</param>
+        /// <returns>The vehicle model with the specified id, if it exists; otherwise, a 404 Not Found response.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetVehicleModelById(int id)
         {
             var vehicleModel = await _vehicleModelService.GetVehicleModelById(id);
@@ -58,8 +67,9 @@ namespace CarRental.Controllers
         /// Creates a new vehicle model.
         /// </summary>
         /// <param name="vehicleModel">The vehicle model to create.</param>
-        /// <returns>A status code indicating the result of the operation.</returns>
+        /// <returns>A 204 No Content response, indicating that the vehicle model was successfully created.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> CreateVehicleModel(VehicleModelDTO vehicleModel)
         {
             await _vehicleModelService.CreateVehicleModel(vehicleModel);
@@ -67,13 +77,15 @@ namespace CarRental.Controllers
             return NoContent();
         }
 
+
         /// <summary>
         /// Updates an existing vehicle model.
         /// </summary>
         /// <param name="vehicleModel">The updated data for the vehicle model.</param>
-        /// <returns>A status code indicating the result of the operation.</returns>
+        /// <returns>A 204 No Content response, indicating that the vehicle model was successfully updated.</returns>
         [HttpPut]
-        public async Task<IActionResult> UpdateManufacturer(VehicleModelDTO vehicleModel)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> UpdateVehicleModel(VehicleModelDTO vehicleModel)
         {
             await _vehicleModelService.UpdateVehicleModel(vehicleModel);
 
@@ -81,12 +93,13 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Deletes a vehicle model.
+        /// Deletes an existing vehicle model.
         /// </summary>
         /// <param name="vehicleModel">The vehicle model to delete.</param>
-        /// <returns>A status code indicating the result of the operation.</returns>
+        /// <returns>A 204 No Content response, indicating that the vehicle model was successfully deleted.</returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteManufacturer(VehicleModelWithManufacturerDTO vehicleModel)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteVehicleModel(VehicleModelDTO vehicleModel)
         {
             await _vehicleModelService.DeleteVehicleModel(vehicleModel);
 

@@ -1,5 +1,4 @@
-﻿using CarRental.BLL.DTO.VehicleModelViews;
-using CarRental.DLL.Entities;
+﻿using CarRental.DLL.Entities;
 
 namespace CarRental.BLL.DTO.VehicleView
 {
@@ -8,29 +7,17 @@ namespace CarRental.BLL.DTO.VehicleView
         public int Id { get; set; }
         public bool IsRented { get; set; }
         public int RegitrationNumber { get; set; }
-        public VehicleModelWithManufacturerDTO VehicleModel { get; set; }
+        public int VehicleModelId { get; set; }
 
-        public static explicit operator VehicleDTO(Vehicle vehicle)
+        public static explicit operator Vehicle(VehicleDTO vehicleDTO)
         {
-            return vehicle == null ? null : new VehicleDTO
+            return vehicleDTO == null ? null : new Vehicle
             {
-                Id = vehicle.Id,
-                IsRented = vehicle.IsRented,
-                RegitrationNumber = vehicle.RegistrationNumber,
-                VehicleModel = (VehicleModelWithManufacturerDTO)vehicle.VehicleModel
+                Id = vehicleDTO.Id,
+                IsRented = vehicleDTO.IsRented,
+                RegistrationNumber = vehicleDTO.RegitrationNumber,
+                VehicleModelID = vehicleDTO.VehicleModelId
             };
         }
-
-        //TODO
-        //public static explicit operator Vehicle(VehicleDTO vehicleDTO)
-        //{
-        //    return vehicleDTO == null ? null : new Vehicle
-        //    {
-        //        Id = vehicleDTO.Id,
-        //        IsRented = vehicleDTO.IsRented,
-        //        RegistrationNumber = vehicleDTO.RegitrationNumber,
-        //        VehicleModel = (VehicleModel)vehicleDTO.VehicleModel
-        //    };
-        //}
     }
 }

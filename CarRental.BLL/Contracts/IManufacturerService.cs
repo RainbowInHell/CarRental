@@ -7,8 +7,8 @@ namespace CarRental.BLL.Contracts
         public Task<IEnumerable<ManufacturerDTO>> GetManufacturers();
         public Task<IEnumerable<ManufacturerWithModelsDTO>> GetManufacturersWithModels();
         public Task<ManufacturerDTO> GetManufacturerById(int id);
-        public Task CreateManufacturer(ManufacturerDTO manufacturer);
-        public Task UpdateManufacturer(ManufacturerDTO manufacturer);
-        public Task DeleteManufacturer(ManufacturerDTO manufacturer);
+        public Task CreateManufacturer(ManufacturerDTO manufacturerDTO);
+        public Task UpdateManufacturer(ManufacturerDTO manufacturerDTO);
+        public Task DeleteManufacturer(ManufacturerDTO manufacturerDTO);
     }
 }

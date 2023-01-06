@@ -35,21 +35,21 @@ namespace CarRental.BLL.Services
             return (ManufacturerDTO)manufacturer;
         }
 
-        public async Task CreateManufacturer(ManufacturerDTO manufacturer)
+        public async Task CreateManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            await _unitOfWork.ManufacturerRepository.CreateAsync((Manufacturer)manufacturer);
+            await _unitOfWork.ManufacturerRepository.CreateAsync((Manufacturer)manufacturerDTO);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task UpdateManufacturer(ManufacturerDTO manufacturer)
+        public async Task UpdateManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            _unitOfWork.ManufacturerRepository.Update((Manufacturer)manufacturer);
+            _unitOfWork.ManufacturerRepository.Update((Manufacturer)manufacturerDTO);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task DeleteManufacturer(ManufacturerDTO manufacturer)
+        public async Task DeleteManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            _unitOfWork.ManufacturerRepository.Delete((Manufacturer)manufacturer);
+            _unitOfWork.ManufacturerRepository.Delete((Manufacturer)manufacturerDTO);
             await _unitOfWork.SaveAsync();
         }
     }

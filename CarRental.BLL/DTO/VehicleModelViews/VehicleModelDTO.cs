@@ -22,15 +22,15 @@ namespace CarRental.BLL.DTO.VehicleModelViews
             };
         }
 
-        public static explicit operator VehicleModelDTO(VehicleModel vehicleModel)
+        public static explicit operator VehicleModelDTO(VehicleModel vehicleModelDTO)
         {
-            return vehicleModel == null ? null : new VehicleModelDTO
+            return vehicleModelDTO == null ? null : new VehicleModelDTO
             {
-                Id = vehicleModel.Id,
-                Name = vehicleModel.Name,
-                Mileage = vehicleModel.Mileage,
-                CreatedYear = vehicleModel.CreatedYear,
-                ManufacturerId = vehicleModel.ManufacturerID
+                Id = vehicleModelDTO.Id,
+                Name = vehicleModelDTO.Name,
+                Mileage = vehicleModelDTO.Mileage,
+                CreatedYear = vehicleModelDTO.CreatedYear,
+                ManufacturerId = vehicleModelDTO.ManufacturerID
             };
         }
     }

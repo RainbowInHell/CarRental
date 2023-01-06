@@ -4,22 +4,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers
 {
+    /// <summary>
+    /// Represents a controller for managing manufacturers.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class ManufacturersController : ControllerBase
+    public class ManufacturerController : ControllerBase
     {
         private readonly IManufacturerService _manufacturerService;
 
-        public ManufacturersController(IManufacturerService manufacturerService)
+        public ManufacturerController(IManufacturerService manufacturerService)
         {
             _manufacturerService = manufacturerService;
         }
 
         /// <summary>
-        /// Gets a list of all manufacturers.
+        /// Gets a list of manufacturers.
         /// </summary>
-        /// <returns>A list of all manufacturers.</returns>
+        /// <returns>A list of manufacturers.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetManufacturers()
         {
             var manufacturers = await _manufacturerService.GetManufacturers();
@@ -28,10 +33,12 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Gets a list of all manufacturers with their associated vehicle models.
+        /// Gets a list of manufacturers with their associated vehicle models.
         /// </summary>
         /// <returns>A list of manufacturers with their associated vehicle models.</returns>
         [HttpGet("models")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetManufacturersWithModels()
         {
             var manufacturers = await _manufacturerService.GetManufacturersWithModels();
@@ -40,11 +47,13 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Gets a manufacturer by id.
+        /// Gets a manufacturer by its ID.
         /// </summary>
-        /// <param name="id">The id of the manufacturer to retrieve.</param>
-        /// <returns>The manufacturer with the specified id.</returns>
+        /// <param name="id">The ID of the manufacturer to retrieve.</param>
+        /// <returns>The manufacturer with the specified id, if it exists; otherwise, a 404 Not Found response.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetManufacturerById(int id)
         {
             var manufacturer = await _manufacturerService.GetManufacturerById(id);
@@ -56,8 +65,9 @@ namespace CarRental.Controllers
         /// Creates a new manufacturer.
         /// </summary>
         /// <param name="manufacturer">The manufacturer to create.</param>
-        /// <returns>A status code indicating the result of the request.</returns>
+        /// <returns>A 204 No Content response, indicating that the vehicle model was successfully created.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> CreateManufacturer(ManufacturerDTO manufacturer)
         {
             await _manufacturerService.CreateManufacturer(manufacturer);
@@ -68,9 +78,10 @@ namespace CarRental.Controllers
         /// <summary>
         /// Updates an existing manufacturer.
         /// </summary>
-        /// <param name="manufacturer">The updated manufacturer information.</param>
-        /// <returns>A status code indicating the result of the request.</returns>
+        /// <param name="manufacturer">The updated data for the manufacturer.</param>
+        /// <returns>A 204 No Content response, indicating that the manufacturer was successfully updated.</returns>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> UpdateManufacturer(ManufacturerDTO manufacturer)
         {
             await _manufacturerService.UpdateManufacturer(manufacturer);
@@ -79,11 +90,12 @@ namespace CarRental.Controllers
         }
 
         /// <summary>
-        /// Deletes a manufacturer.
+        /// Deletes an existing manufacturer.
         /// </summary>
         /// <param name="manufacturer">The manufacturer to delete.</param>
-        /// <returns>A status code indicating the result of the request.</returns>
+        /// <returns>A 204 No Content response, indicating that the manufacturer was successfully deleted.</returns>
         [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteManufacturer(ManufacturerDTO manufacturer)
         {
             await _manufacturerService.DeleteManufacturer(manufacturer);

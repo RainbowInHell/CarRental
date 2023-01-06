@@ -16,7 +16,7 @@ namespace CarRental.BLL.Services
 
         public async Task<IEnumerable<VehicleModelWithManufacturerDTO>> GetVehicleModels()
         {
-            var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync(x => x.Manufacturer);
+            var vehicleModels = await _unitOfWork.VehicleModelRepository.GetAllAsync(vm => vm.Manufacturer);
 
             return vehicleModels.Select(vm => (VehicleModelWithManufacturerDTO)vm);
         }
@@ -35,21 +35,21 @@ namespace CarRental.BLL.Services
             return (VehicleModelWithManufacturerDTO)vehicleModel;
         }
 
-        public async Task CreateVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task CreateVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            await _unitOfWork.VehicleModelRepository.CreateAsync((VehicleModel)vehicleModel);
+            await _unitOfWork.VehicleModelRepository.CreateAsync((VehicleModel)vehicleModelDTO);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task UpdateVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task UpdateVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            _unitOfWork.VehicleModelRepository.Update((VehicleModel)vehicleModel);
+            _unitOfWork.VehicleModelRepository.Update((VehicleModel)vehicleModelDTO);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task DeleteVehicleModel(VehicleModelWithManufacturerDTO vehicleModel)
+        public async Task DeleteVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            _unitOfWork.VehicleModelRepository.Delete((VehicleModel)vehicleModel);
+            _unitOfWork.VehicleModelRepository.Delete((VehicleModel)vehicleModelDTO);
             await _unitOfWork.SaveAsync();
         }
     }

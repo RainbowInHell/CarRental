@@ -28,7 +28,7 @@ namespace CarRental.DLL.EntitiesConfigurations
             vehicleEntityBuilder
                 .HasOne(v => v.Booking)
                 .WithOne(b => b.Vehicle)
-                .HasForeignKey<Booking>(a => a.VehicleID);
+                .HasForeignKey<Booking>(b => b.VehicleID);
         }
     }
 }
