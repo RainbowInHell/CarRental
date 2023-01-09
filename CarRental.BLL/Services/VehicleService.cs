@@ -1,5 +1,5 @@
 ﻿using CarRental.BLL.Contracts;
-using CarRental.BLL.DTO.VehicleView;
+using CarRental.BLL.DTO.VehicleViews;
 using CarRental.DLL.Contracts;
 using CarRental.DLL.Entities;
 

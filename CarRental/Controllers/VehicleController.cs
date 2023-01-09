@@ -1,5 +1,5 @@
 ﻿using CarRental.BLL.Contracts;
-using CarRental.BLL.DTO.VehicleView;
+using CarRental.BLL.DTO.VehicleViews;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Controllers

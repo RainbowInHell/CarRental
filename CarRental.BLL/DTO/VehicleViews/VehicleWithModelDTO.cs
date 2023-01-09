@@ -1,7 +1,7 @@
 ﻿using CarRental.BLL.DTO.VehicleModelViews;
 using CarRental.DLL.Entities;
 
-namespace CarRental.BLL.DTO.VehicleView
+namespace CarRental.BLL.DTO.VehicleViews
 {
     public class VehicleWithModelDTO
     {

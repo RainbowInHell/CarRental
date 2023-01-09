@@ -1,4 +1,4 @@
-﻿using CarRental.BLL.DTO.VehicleView;
+﻿using CarRental.BLL.DTO.VehicleViews;
 
 namespace CarRental.BLL.Contracts
 {
