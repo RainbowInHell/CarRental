@@ -13,6 +13,7 @@ namespace CarRental.DLL.Repositories
         {
             return await _context.Vehicles
                 .AsNoTracking()
+                .Include(x => x.VehicleModel.Manufacturer)
                 .Where(x => !x.IsRented)
                 .ToListAsync();
         }

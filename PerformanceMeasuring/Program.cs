@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using CarRental.DLL.Entities;
-using CarRental.BLL.DTO;
+using CarRental.BLL.DTO.ManufacturerViews;
 
 public class Benchmark
 {

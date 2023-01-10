@@ -1,6 +1,7 @@
 ﻿using CarRental.DLL.Entities;
 using CarRental.DLL.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CarRental.DLL.Repositories
 {
@@ -15,14 +16,28 @@ namespace CarRental.DLL.Repositories
             _dbSet = _context.Set<TEntity>();
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, object>>? include = null)
         {
-            return await _dbSet.AsNoTracking().ToListAsync();
+            var query = _dbSet.AsNoTracking();
+
+            if (include != null)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(int id, Expression<Func<TEntity, object>>? include = null)
         {
-            return await _dbSet.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
+            var query = _dbSet.AsNoTracking().Where(x => x.Id == id);
+
+            if (include != null)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task CreateAsync(TEntity entity)

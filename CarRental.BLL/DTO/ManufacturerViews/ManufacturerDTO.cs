@@ -1,6 +1,6 @@
 ﻿using CarRental.DLL.Entities;
 
-namespace CarRental.BLL.DTO
+namespace CarRental.BLL.DTO.ManufacturerViews
 {
     public class ManufacturerDTO
     {
@@ -16,12 +16,12 @@ namespace CarRental.BLL.DTO
             };
         }
 
-        public static explicit operator Manufacturer(ManufacturerDTO manufacturer)
+        public static explicit operator Manufacturer(ManufacturerDTO manufacturerDTO)
         {
-            return manufacturer == null ? null : new Manufacturer
+            return manufacturerDTO == null ? null : new Manufacturer
             {
-                Id = manufacturer.Id,
-                Name = manufacturer.Name
+                Id = manufacturerDTO.Id,
+                Name = manufacturerDTO.Name
             };
         }
     }

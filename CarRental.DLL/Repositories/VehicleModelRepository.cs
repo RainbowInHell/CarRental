@@ -9,23 +9,11 @@ namespace CarRental.DLL.Repositories
         public VehicleModelRepository(CarRentalContext context) : base(context)
         { }
 
-        public override async Task<IEnumerable<VehicleModel>> GetAllAsync()
+        public async Task<IEnumerable<VehicleModel>> GetMileageInBetween(int mileageFrom, int mileageTo)
         {
             return await _context.VehicleModels
                 .AsNoTracking()
                 .Include(x => x.Manufacturer)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<VehicleModel>> GetMileageInBetween(int mileageFrom, int mileageTo)
-        {
-            if (mileageFrom < 0 || mileageTo < 0 || mileageFrom > mileageTo)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            return await _context.VehicleModels
-                .AsNoTracking()
                 .Where(x => x.Mileage >= mileageFrom && x.Mileage <= mileageTo)
                 .ToListAsync();
         }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarRental.DLL.EntitiesConfigurations 
+namespace CarRental.DLL.EntitiesConfigurations
 {
     public class VehicleEntityConfiguration : IEntityTypeConfiguration<Vehicle>
     {
@@ -16,10 +16,19 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .IsRequired();
 
             vehicleEntityBuilder
+                .Property(x => x.RegistrationNumber)
+                .IsRequired();
+
+            vehicleEntityBuilder
                 .HasOne(vm => vm.VehicleModel)
                 .WithMany(v => v.Vehicles)
                 .HasForeignKey(vm => vm.VehicleModelID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            vehicleEntityBuilder
+                .HasOne(v => v.Booking)
+                .WithOne(b => b.Vehicle)
+                .HasForeignKey<Booking>(b => b.VehicleID);
         }
     }
 }

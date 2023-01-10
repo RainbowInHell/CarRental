@@ -15,7 +15,7 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .Property(x => x.Name)
                 .HasMaxLength(25)
                 .IsRequired();
-            
+
             customerEntityBuilder
                 .Property(x => x.Surname)
                 .HasMaxLength(25)
@@ -35,12 +35,12 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .Property(x => x.PassportNumber)
                 .HasMaxLength(14)
                 .IsRequired();
-            
+
             customerEntityBuilder
                 .Property(x => x.Adres)
                 .HasMaxLength(40)
                 .IsRequired();
-            
+
             customerEntityBuilder
                 .Property(x => x.DrivingLicenseNumber)
                 .HasMaxLength(15)

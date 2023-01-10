@@ -25,11 +25,6 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .WithMany(x => x.Bookings)
                 .HasForeignKey(x => x.CustomerID)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            bookingEntitybuilder
-                .HasOne(v => v.Vehicle)
-                .WithOne(b => b.Booking)
-                .HasForeignKey<Vehicle>(b => b.Id);
         }
     }
 }

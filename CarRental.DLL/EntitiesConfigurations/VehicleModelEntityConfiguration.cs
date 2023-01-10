@@ -12,6 +12,10 @@ namespace CarRental.DLL.EntitiesConfigurations
                 .HasKey(x => x.Id);
 
             vehicleModelEntityBuilder
+                .HasIndex(m => m.Name)
+                .IsUnique();
+
+            vehicleModelEntityBuilder
                 .Property(x => x.Name)
                 .HasMaxLength(25)
                 .IsRequired();
