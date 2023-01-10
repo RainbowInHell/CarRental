@@ -1,4 +1,4 @@
-﻿using CarRental.BLL.DTO.ManufacturerProfiles;
+﻿using CarRental.BLL.DTO.ManufacturerViews;
 using CarRental.DLL.Entities;
 
 namespace CarRental.BLL.DTO.VehicleModelViews

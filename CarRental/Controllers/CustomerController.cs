@@ -1,6 +1,6 @@
 ﻿using CarRental.BLL.Contracts;
 using CarRental.BLL.DTO.CustomerViews;
-using CarRental.BLL.DTO.ManufacturerProfiles;
+using CarRental.BLL.DTO.ManufacturerViews;
 using CarRental.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
