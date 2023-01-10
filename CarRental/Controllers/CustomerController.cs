@@ -1,4 +1,6 @@
 ﻿using CarRental.BLL.Contracts;
+using CarRental.BLL.DTO.CustomerViews;
+using CarRental.BLL.DTO.ManufacturerProfiles;
 using CarRental.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +32,73 @@ namespace CarRental.Controllers
             var customers = await _customerService.GetCustomers();
 
             return !customers.Any() ? NotFound("The customers were not found.") : Ok(customers);
+        }
+
+        [HttpGet("bookings")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetTopCustomersByBookingsCount(int numOfCustomers)
+        {
+            var customers = await _customerService.GetTopCustomersByBookingsCount(numOfCustomers);
+
+            return !customers.Any() ? NotFound("The customers were not found.") : Ok(customers);
+        }
+
+        /// <summary>
+        /// Gets a customer by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the customer to retrieve.</param>
+        /// <returns>The customer with the specified id, if it exists; otherwise, a 404 Not Found response.</returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCustomerById(int id)
+        {
+            var customer = await _customerService.GetCustomerById(id);
+
+            return customer == null ? NotFound("The customer was not found.") : Ok(customer);
+        }
+
+        /// <summary>
+        /// Creates a new customer.
+        /// </summary>
+        /// <param name="customerDTO">The customer to create.</param>
+        /// <returns>A 204 No Content response, indicating that the customer was successfully created.</returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> CreateCustomer(CustomerDTO customerDTO)
+        {
+            await _customerService.CreateCustomer(customerDTO);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Updates an existing customer.
+        /// </summary>
+        /// <param name="customerDTO">The updated data for the customer.</param>
+        /// <returns>A 204 No Content response, indicating that the customer was successfully updated.</returns>
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> UpdateCustomer(CustomerDTO customerDTO)
+        {
+            await _customerService.UpdateCustomer(customerDTO);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Deletes an existing customer.
+        /// </summary>
+        /// <param name="customerDTO">The customer to delete.</param>
+        /// <returns>A 204 No Content response, indicating that the customer was successfully deleted.</returns>
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteCustomer(CustomerDTO customerDTO)
+        {
+            await _customerService.DeleteCustomer(customerDTO);
+
+            return NoContent();
         }
     }
 }

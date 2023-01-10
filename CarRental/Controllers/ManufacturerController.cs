@@ -64,13 +64,13 @@ namespace CarRental.Controllers
         /// <summary>
         /// Creates a new manufacturer.
         /// </summary>
-        /// <param name="manufacturer">The manufacturer to create.</param>
-        /// <returns>A 204 No Content response, indicating that the vehicle model was successfully created.</returns>
+        /// <param name="manufacturerDTO">The manufacturer to create.</param>
+        /// <returns>A 204 No Content response, indicating that the manufacturer was successfully created.</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateManufacturer(ManufacturerDTO manufacturer)
+        public async Task<IActionResult> CreateManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            await _manufacturerService.CreateManufacturer(manufacturer);
+            await _manufacturerService.CreateManufacturer(manufacturerDTO);
 
             return NoContent();
         }
@@ -78,13 +78,13 @@ namespace CarRental.Controllers
         /// <summary>
         /// Updates an existing manufacturer.
         /// </summary>
-        /// <param name="manufacturer">The updated data for the manufacturer.</param>
+        /// <param name="manufacturerDTO">The updated data for the manufacturer.</param>
         /// <returns>A 204 No Content response, indicating that the manufacturer was successfully updated.</returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> UpdateManufacturer(ManufacturerDTO manufacturer)
+        public async Task<IActionResult> UpdateManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            await _manufacturerService.UpdateManufacturer(manufacturer);
+            await _manufacturerService.UpdateManufacturer(manufacturerDTO);
 
             return NoContent();
         }
@@ -92,13 +92,13 @@ namespace CarRental.Controllers
         /// <summary>
         /// Deletes an existing manufacturer.
         /// </summary>
-        /// <param name="manufacturer">The manufacturer to delete.</param>
+        /// <param name="manufacturerDTO">The manufacturer to delete.</param>
         /// <returns>A 204 No Content response, indicating that the manufacturer was successfully deleted.</returns>
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteManufacturer(ManufacturerDTO manufacturer)
+        public async Task<IActionResult> DeleteManufacturer(ManufacturerDTO manufacturerDTO)
         {
-            await _manufacturerService.DeleteManufacturer(manufacturer);
+            await _manufacturerService.DeleteManufacturer(manufacturerDTO);
 
             return NoContent();
         }

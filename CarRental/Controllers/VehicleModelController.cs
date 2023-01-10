@@ -70,9 +70,9 @@ namespace CarRental.Controllers
         /// <returns>A 204 No Content response, indicating that the vehicle model was successfully created.</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task<IActionResult> CreateVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            await _vehicleModelService.CreateVehicleModel(vehicleModel);
+            await _vehicleModelService.CreateVehicleModel(vehicleModelDTO);
 
             return NoContent();
         }
@@ -85,9 +85,9 @@ namespace CarRental.Controllers
         /// <returns>A 204 No Content response, indicating that the vehicle model was successfully updated.</returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> UpdateVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task<IActionResult> UpdateVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            await _vehicleModelService.UpdateVehicleModel(vehicleModel);
+            await _vehicleModelService.UpdateVehicleModel(vehicleModelDTO);
 
             return NoContent();
         }
@@ -99,9 +99,9 @@ namespace CarRental.Controllers
         /// <returns>A 204 No Content response, indicating that the vehicle model was successfully deleted.</returns>
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteVehicleModel(VehicleModelDTO vehicleModel)
+        public async Task<IActionResult> DeleteVehicleModel(VehicleModelDTO vehicleModelDTO)
         {
-            await _vehicleModelService.DeleteVehicleModel(vehicleModel);
+            await _vehicleModelService.DeleteVehicleModel(vehicleModelDTO);
 
             return NoContent();
         }
